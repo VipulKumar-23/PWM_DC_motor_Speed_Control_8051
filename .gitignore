@@ -1,0 +1,84 @@
+# ===================================================================
+# Git Ignore Configuration for 8051 Embedded Development (Keil C51)
+# ===================================================================
+
+# User-specific Keil uVision files
+*.opt
+*.uvopt
+*.uvoptx
+*.uvgui
+*.uvgui.*
+*.uvguix.*
+
+# Listing files
+*.cod
+*.htm
+*.i
+*.lst
+*.map
+*.m51
+*.m66
+*.scr
+
+# Object and Output files
+*.axf
+*.b[0-3][0-9]
+*.hex
+*.d
+*.crf
+*.elf
+*.h86
+*.lib
+*.obj
+*.o
+*.sbr
+
+# Build and Temp files
+*.bat
+*._ia
+*.__i
+*._ii
+
+# Generated Keil Output directories
+Listings/
+Objects/
+
+# Debugger files
+*.ini
+
+# Miscellaneous tool logs & configs
+*.build_log.htm
+*.cdb
+*.dep
+*.ic
+*.lin
+*.lnp
+*.orc
+*.pack
+*.pdsc
+*.plg
+*.sct
+*.sfd
+*.sfr
+*.tra
+*.bin
+*.fed
+*.l1p
+*.l2p
+*.iex
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*~
+Thumbs.db
+.DS_Store
+
+# Simulation temp files (Proteus)
+*.pdsbak
+*.workspace
+
+# Setup Scripts
+*.ps1
+
