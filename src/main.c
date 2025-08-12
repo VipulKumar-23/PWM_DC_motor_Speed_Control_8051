@@ -1,11 +1,14 @@
 /**
  * @file main.c
- * @brief Main Application Loop - 8051 PWM Motor Speed Controller
+ * @brief Main Application Loop - 8051 PWM Motor Speed Controller with Debouncing
  */
 
 #include "bsp_8051.h"
 #include "motor.h"
 #include "pwm.h"
+#include "delay.h"
+
+#define DEBOUNCE_DELAY_MS   25
 
 static void Hardware_Init(void)
 {
@@ -24,22 +27,42 @@ int main(void)
 
     while (1)
     {
-        /* Active-LOW button detection (pull-up resistor configuration) */
+        /* Active-LOW button detection with software debouncing */
         if (BTN_LOW == 0)
         {
-            Motor_SetSpeed(MOTOR_STATE_LOW);
+            Delay_ms(DEBOUNCE_DELAY_MS);
+            if (BTN_LOW == 0)
+            {
+                Motor_SetSpeed(MOTOR_STATE_LOW);
+                while (BTN_LOW == 0); /* Wait for button release */
+            }
         }
         else if (BTN_MED == 0)
         {
-            Motor_SetSpeed(MOTOR_STATE_MED);
+            Delay_ms(DEBOUNCE_DELAY_MS);
+            if (BTN_MED == 0)
+            {
+                Motor_SetSpeed(MOTOR_STATE_MED);
+                while (BTN_MED == 0); /* Wait for button release */
+            }
         }
         else if (BTN_HIGH == 0)
         {
-            Motor_SetSpeed(MOTOR_STATE_HIGH);
+            Delay_ms(DEBOUNCE_DELAY_MS);
+            if (BTN_HIGH == 0)
+            {
+                Motor_SetSpeed(MOTOR_STATE_HIGH);
+                while (BTN_HIGH == 0); /* Wait for button release */
+            }
         }
         else if (BTN_STOP == 0)
         {
-            Motor_Stop();
+            Delay_ms(DEBOUNCE_DELAY_MS);
+            if (BTN_STOP == 0)
+            {
+                Motor_Stop();
+                while (BTN_STOP == 0); /* Wait for button release */
+            }
         }
     }
 }
