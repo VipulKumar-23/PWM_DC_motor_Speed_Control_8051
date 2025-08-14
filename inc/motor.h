@@ -19,10 +19,23 @@ typedef enum {
 void Motor_Init(void);
 
 /**
- * @brief Sets motor operation speed preset.
+ * @brief Sets motor operation speed preset immediately.
  * @param speed Speed state preset
  */
 void Motor_SetSpeed(MotorSpeed_t speed);
+
+/**
+ * @brief Smoothly transitions motor to target speed to prevent high inrush current.
+ * @param target_speed Target speed state preset
+ * @param step_delay_ms Delay in milliseconds between duty cycle adjustment steps
+ */
+void Motor_SetSpeedRamped(MotorSpeed_t target_speed, unsigned int step_delay_ms);
+
+/**
+ * @brief Returns the current active motor speed preset.
+ * @return Current speed preset
+ */
+MotorSpeed_t Motor_GetCurrentSpeed(void);
 
 /**
  * @brief Stops motor rotation immediately.
